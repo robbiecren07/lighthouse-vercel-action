@@ -1,0 +1,18 @@
+name: 'Lighthouse PR Commenter for Vercel'
+description: 'Runs Lighthouse audits against a Vercel preview deployment and posts results as a GitHub PR comment.'
+author: 'Robbie Crenshaw'
+branding:
+  icon: 'zap'
+  color: 'blue'
+
+inputs:
+  vercel_url:
+    description: 'The Vercel preview deployment URL to test (e.g., https://your-app-git-branch.vercel.app)'
+    required: true
+  github_token:
+    description: 'GitHub token for PR comment posting'
+    required: true
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'

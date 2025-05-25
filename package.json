@@ -1,0 +1,38 @@
+{
+  "name": "lighthouse-vercel-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to run Lighthouse against Vercel preview deployments and post PR comment.",
+  "license": "MIT",
+  "author": "Robbie Crenshaw",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node20 --outfile=dist/index.js",
+    "run-test": "npx ts-node src/local-test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robbiecren07/lighthouse-vercel-action.git"
+  },
+  "keywords": [
+    "lighthouse",
+    "vercel",
+    "github-action",
+    "pull-request",
+    "performance",
+    "audit"
+  ],
+  "dependencies": {
+    "chrome-launcher": "^1.2.0",
+    "lighthouse": "^12.6.0"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "@types/node": "^22.15.21",
+    "esbuild": "^0.25.4",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

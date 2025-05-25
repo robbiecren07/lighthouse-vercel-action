@@ -1,0 +1,28 @@
+name: Lighthouse Audit on PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  lighthouse:
+    name: Run Lighthouse on Vercel Preview
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Wait for Vercel preview to be ready
+        id: wait-for-vercel
+        uses: patrickedqvist/wait-for-vercel-preview@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 180
+          check_interval: 10
+
+      - name: Run Lighthouse and comment on PR
+        uses: robbiecren07/lighthouse-vercel-action@v1
+        with:
+          vercel_url: ${{ steps.wait-for-vercel.outputs.url }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
