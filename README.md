@@ -38,20 +38,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Optional: Sleep briefly if Vercel build takes time
+      - name: Wait for Vercel deployment to start/finish
+        run: sleep 120
+        
       - name: Wait for Vercel preview to be ready
         id: wait-for-vercel
-        uses: patrickedqvist/wait-for-vercel-preview@v1
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           max_timeout: 180
           check_interval: 10
 
       - name: Run Lighthouse and comment on PR
-        uses: robbiecren07/lighthouse-vercel-action@v1
+        uses: robbiecren07/lighthouse-vercel-action@v1.0.2
         with:
           vercel_url: ${{ steps.wait-for-vercel.outputs.url }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+> **⚠️ Important:** If you're using Vercel's GitHub integration for PR previews, Lighthouse may run before the deployment is fully live.  
+> To avoid this, add a sleep step before the audit to allow Vercel time to finish building.
 
 ### 🛠 Inputs
 
