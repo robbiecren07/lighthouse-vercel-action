@@ -51,7 +51,7 @@ jobs:
           check_interval: 10
 
       - name: Run Lighthouse and comment on PR
-        uses: robbiecren07/lighthouse-vercel-action@v1.0.2
+        uses: robbiecren07/lighthouse-vercel-action@v1.0.3
         with:
           vercel_url: ${{ steps.wait-for-vercel.outputs.url }}
           github_token: ${{ secrets.GITHUB_TOKEN }}

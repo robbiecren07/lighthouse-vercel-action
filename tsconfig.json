@@ -4,9 +4,8 @@
     "module": "CommonJS",
     "outDir": "dist",
     "esModuleInterop": true,
-    "strict": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true
+    "strict": true
   },
   "include": ["src"]
 }

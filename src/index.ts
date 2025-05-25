@@ -1,6 +1,5 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import lighthouse from 'lighthouse'
 import type { Config, Flags, RunnerResult } from 'lighthouse'
 import * as chromeLauncher from 'chrome-launcher'
 import mobileConfig from 'lighthouse/core/config/lr-mobile-config.js'
@@ -9,6 +8,8 @@ async function run() {
   let chrome: chromeLauncher.LaunchedChrome | undefined
 
   try {
+    const lighthouse = (await import('lighthouse')).default
+
     const vercelUrl = core.getInput('vercel_url')
     const token = core.getInput('github_token')
 
@@ -16,7 +17,7 @@ async function run() {
       throw new Error('Invalid or missing Vercel URL.')
     }
 
-    const chrome = await chromeLauncher.launch({
+    chrome = await chromeLauncher.launch({
       chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu'],
     })
 
