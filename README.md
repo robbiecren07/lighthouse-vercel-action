@@ -1,5 +1,7 @@
 # 🔦 Lighthouse PR Commenter for Vercel
 
+[![GitHub Marketplace](https://img.shields.io/badge/GitHub%20Marketplace-Lighthouse%20Action-blue?logo=github)](https://github.com/marketplace/actions/lighthouse-pr-commenter-for-vercel)
+
 Automatically runs a Lighthouse audit against your Vercel preview deployment and posts the results as a comment on the related pull request.
 
 > Ideal for performance monitoring on every PR — without needing 3rd-party tools.
