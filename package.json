@@ -1,6 +1,6 @@
 {
   "name": "lighthouse-vercel-action",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "GitHub Action to run Lighthouse against Vercel preview deployments and post PR comment.",
   "license": "MIT",
   "author": "Robbie Crenshaw",
