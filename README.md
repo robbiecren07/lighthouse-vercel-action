@@ -38,34 +38,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Optional: Sleep briefly if Vercel build takes time
-      - name: Wait for Vercel deployment to start/finish
-        run: sleep 120
-        
-      - name: Wait for Vercel preview to be ready
-        id: wait-for-vercel
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 180
-          check_interval: 10
-
       - name: Run Lighthouse and comment on PR
-        uses: robbiecren07/lighthouse-vercel-action@v1.0.5
+        uses: robbiecren07/lighthouse-vercel-action@v1.1.0
         with:
-          vercel_url: ${{ steps.wait-for-vercel.outputs.url }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: '120' # optional - defaults to 180 seconds
+          check_interval: '20' # optional - defaults to 10 seconds
+
 ```
 
-> **⚠️ Important:** If you're using Vercel's GitHub integration for PR previews, Lighthouse may run before the deployment is fully live.  
-> To avoid this, add a sleep step before the audit to allow Vercel time to finish building.
+> **⚠️ Important:** If the action fails try increaseing the `max_timeout`.
 
 ### 🛠 Inputs
 
-| Name           | Required | Description                                   |
-|----------------|----------|-----------------------------------------------|
-| `vercel_url`   | ✅       | The deployed Vercel Preview URL to audit      |
-| `github_token` | ✅       | GitHub token to post or update the PR comment |
+| Name             | Required | Description                                                          |
+| ---------------- | -------- | -------------------------------------------------------------------- |
+| `github_token`   | ✅        | GitHub token to authenticate and post or update the PR comment       |
+| `max_timeout`    | ❌        | Max time (in seconds) to wait for Vercel deployment (default: `180`) |
+| `check_interval` | ❌        | Time (in seconds) between deployment status checks (default: `10`)   |
 
 
 ### 🧪 Example Output
@@ -82,7 +72,3 @@ Once a PR is created, you’ll get a comment like:
 | 🔍 SEO             | 92    |
 
 > Audited [Preview URL](https://your-app--feature-branch.vercel.app)
-
-### 📋 License
-
-MIT © Robbie Crenshaw
