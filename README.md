@@ -27,7 +27,7 @@ Automatically runs a Lighthouse audit against your Vercel preview deployment and
 
 ### 📆 Example Output (Live Screenshot)
 
-![Lighthouse PR comment screenshot](assets/screenshot.png)
+![Lighthouse PR comment screenshot](assets/example-screenshot.png)
 
 ---
 
