@@ -6,13 +6,18 @@ branding:
   color: 'blue'
 
 inputs:
-  vercel_url:
-    description: 'The Vercel preview deployment URL to test (e.g., https://your-app-git-branch.vercel.app)'
-    required: true
   github_token:
-    description: 'GitHub token for PR comment posting'
+    description: 'GitHub token to authenticate requests and post PR comments'
     required: true
-
+  max_timeout:
+    description: 'Maximum time (in seconds) to wait for the Vercel deployment to become available'
+    required: false
+    default: '180'
+  check_interval:
+    description: 'Time (in seconds) between deployment availability checks'
+    required: false
+    default: '10'
+    
 runs:
   using: 'node20'
   main: 'dist/index.js'

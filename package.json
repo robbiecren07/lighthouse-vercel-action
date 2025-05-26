@@ -1,14 +1,13 @@
 {
   "name": "lighthouse-vercel-action",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "GitHub Action to run Lighthouse against Vercel preview deployments and post PR comment.",
   "license": "MIT",
   "author": "Robbie Crenshaw",
   "type": "commonjs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "run-test": "npx ts-node src/local-test.ts"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,8 @@
     "github-action",
     "pull-request",
     "performance",
-    "audit"
+    "audit",
+    "preview"
   ],
   "dependencies": {
     "@actions/core": "^1.11.1",
